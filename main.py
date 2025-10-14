@@ -6,14 +6,14 @@ import jq
 import time
 from requests_html import HTMLSession
 #langchain imports
-from langchain_openai import ChatOpenAI
 from langchain_community.document_loaders import JSONLoader
 from langchain_community.vectorstores import FAISS
-from langchain_community.embeddings import OpenAIEmbeddings
+from langchain_ollama import OllamaEmbeddings
 from langchain.chains import RetrievalQA
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.documents import Document
+from langchain_ollama import ChatOllama
 
 
 load_dotenv()
@@ -158,7 +158,7 @@ def main():
     print(f"{len(docs)} documentos carregados.")
 
     # 2 Criar Embeddings e indexa no Faiss - Cria um banco vetorial FAISS para buscas semânticas. 
-    embeddings = OpenAIEmbeddings()
+    embeddings = OllamaEmbeddings(model="embeddinggemma:300m")
     db = FAISS.from_documents(docs, embeddings)
 
     # 3 Save FAISS - (do inglês Facebook AI Similarity Search) É um mecanismo para armazenar 
@@ -218,7 +218,7 @@ def main():
     # LCEL (LangChain Expression Language) o LCEL é uma DSL (Domain-Specific Language) do LangChain para 
     # montar pipelines de LLMs de forma modular, declarativa e composicional — como montar blocos Lego.
     # Cada componente (prompt, modelo, parser, retriever etc.) é um “nó” que pode ser conectado com o operador |.
-    llm = ChatOpenAI(model="gpt-4o-mini", temperature = 0)
+    llm = ChatOllama(temperature = 0,validate_model_on_init=True, model="gemma3:1b")
     # Aqui, `RunnablePassthrough` apenas passa o valor para o próximo nó
     chain = (
         {"receitas": retriever | (lambda docs: "\n\n".join(d.page_content for d in docs))}
