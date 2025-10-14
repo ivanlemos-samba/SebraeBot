@@ -14,6 +14,7 @@ from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.documents import Document
 from langchain_ollama import ChatOllama
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 
 load_dotenv()
@@ -157,9 +158,18 @@ def main():
     docs = convert_JSON_to_documents()
     print(f"{len(docs)} documentos carregados.")
 
+    # 1.5 - Divide o texto em chunks (caso os textos sejam longos)
+    splitter = RecursiveCharacterTextSplitter(
+        chunk_size=200,
+        chunk_overlap=50,
+        length_function=len
+    )
+    docs_chunked = splitter.split_documents(docs)
+    print(f"✂️ {len(docs_chunked)} chunks criados.")
+
     # 2 Criar Embeddings e indexa no Faiss - Cria um banco vetorial FAISS para buscas semânticas. 
     embeddings = OllamaEmbeddings(model="embeddinggemma:300m")
-    db = FAISS.from_documents(docs, embeddings)
+    db = FAISS.from_documents(docs_chunked, embeddings)
 
     # 3 Save FAISS - (do inglês Facebook AI Similarity Search) É um mecanismo para armazenar 
     # e buscar vetores (embeddings) de forma muito rápida, mesmo quando há milhões de itens.
@@ -200,9 +210,7 @@ def main():
     Dada as receitas abaixo: 
     {receitas}
     
-    Crie 2 novas:
-    1. com muito carboidrato;
-    2. com muita proteína.
+    Crie 1 nova receita.
 
     Apresente:
     - Título:
@@ -235,7 +243,7 @@ def main():
     # ConversationalRetrievalChain
     # AgentExecutor
     
-    query = "receita para hipertrofia"
+    query = "receita para emagrecimento"
     response = chain.invoke(query)
     print("Pergunta:", query)
     print("Resposta:", response)
