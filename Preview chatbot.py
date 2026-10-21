@@ -61,31 +61,31 @@ def main():
     # Captura dados de receitas de frango em do site receitaria.com
     # scraping_cook_data()
 
-    # 1 -  Carrega o JSON e transforma em documentos
-    docs = load_documents("./Material de treinamento")
-    print(f"{len(docs)} documentos carregados.")
-
-    if not docs:
-        logging.error("Não foi possível carregar nenhum documento. Encerrando o script.")
-        return
-
-    # 1.5 - Divide o texto em chunks (caso os textos sejam longos)
-    splitter = RecursiveCharacterTextSplitter(
-        chunk_size=1000,
-        chunk_overlap=100,
-        length_function=len
-    )
-    docs_chunked = splitter.split_documents(docs)
-    print(f"{len(docs_chunked)} chunks criados.")
-
-    # 2 Criar Embeddings e indexa no Faiss - Cria um banco vetorial FAISS para buscas semânticas. 
+    # # 1 -  Carrega o JSON e transforma em documentos
+    # docs = load_documents("./Material de treinamento")
+    # print(f"{len(docs)} documentos carregados.")
+    #
+    # if not docs:
+    #     logging.error("Não foi possível carregar nenhum documento. Encerrando o script.")
+    #     return
+    #
+    # # 1.5 - Divide o texto em chunks (caso os textos sejam longos)
+    # splitter = RecursiveCharacterTextSplitter(
+    #     chunk_size=1000,
+    #     chunk_overlap=100,
+    #     length_function=len
+    # )
+    # docs_chunked = splitter.split_documents(docs)
+    # print(f"{len(docs_chunked)} chunks criados.")
+    #
+    # 2 Criar Embeddings e indexa no Faiss - Cria um banco vetorial FAISS para buscas semânticas.
     embeddings = OllamaEmbeddings(model="embeddinggemma:300m")
-    db = FAISS.from_documents(docs_chunked, embeddings)
-
-    # 3 Save FAISS - (do inglês Facebook AI Similarity Search) É um mecanismo para armazenar 
-    # e buscar vetores (embeddings) de forma muito rápida, mesmo quando há milhões de itens.
-    db.save_local(FAISS_PATH)
-    print("Índice salvo em >>> ./indice_cursos_faiss")
+    # db = FAISS.from_documents(docs_chunked, embeddings)
+    #
+    # # 3 Save FAISS - (do inglês Facebook AI Similarity Search) É um mecanismo para armazenar
+    # # e buscar vetores (embeddings) de forma muito rápida, mesmo quando há milhões de itens.
+    # db.save_local(FAISS_PATH)
+    # print("Índice salvo em >>> ./indice_cursos_faiss")
 
 
     # 3.5 Carrega o índice salvo (simulando outro script)
@@ -135,14 +135,14 @@ def main():
     """
 
     prompt_template = PromptTemplate(
-        input_variables=["receitas"],
+        input_variables=["context", "question"],
         template=template
     )
 
     # LCEL (LangChain Expression Language) o LCEL é uma DSL (Domain-Specific Language) do LangChain para 
     # montar pipelines de LLMs de forma modular, declarativa e composicional — como montar blocos Lego.
     # Cada componente (prompt, modelo, parser, retriever etc.) é um “nó” que pode ser conectado com o operador |.
-    llm = ChatOllama(temperature = 0,validate_model_on_init=True, model="lfm2.5-thinking:1.2b")
+    llm = ChatOllama(temperature = 0,validate_model_on_init=True, model=LLM_MODEL)
     # Aqui, `RunnablePassthrough` apenas passa o valor para o próximo nó
     chain = (
         {
