@@ -12,6 +12,7 @@ from langchain_core.runnables import RunnablePassthrough
 import logging
 import time
 from pathlib import Path
+import re
 
 
 # Configura o logging
@@ -24,7 +25,7 @@ load_dotenv()
 
 # Definições
 EMBEDDING_MODEL = "embeddinggemma:300m"
-LLM_MODEL = "smallthinker:3b"
+LLM_MODEL = "smallthinker:3b" # Recomendo somente modelos de 3b+ com thinking
 FAISS_PATH = "indice_cursos_faiss"
 DOCUMENT_DIR = "./Material de treinamento"
 
@@ -138,6 +139,19 @@ def main():
         template=template
     )
 
+    # Parser customizado para filtrar e extrair apenas a resposta final
+    class FilterThoughtParser(StrOutputParser):
+        def parse(self , raw_response: str) -> str:
+            # Remove blocos de pensamento/reasoning se existirem
+            match = re.search(r"Resposta:\s*(.*)" , raw_response , re.DOTALL)
+            if match:
+                return match.group(1).strip()
+            match = re.search(r"Answer:\s*(.*)" , raw_response , re.DOTALL)
+            if match:
+                return match.group(1).strip()
+            return raw_response
+
+
     # LCEL (LangChain Expression Language) o LCEL é uma DSL (Domain-Specific Language) do LangChain para 
     # montar pipelines de LLMs de forma modular, declarativa e composicional — como montar blocos Lego.
     # Cada componente (prompt, modelo, parser, retriever etc.) é um “nó” que pode ser conectado com o operador |.
@@ -150,7 +164,7 @@ def main():
         }
         | prompt_template
         | llm
-        | StrOutputParser()
+        | FilterThoughtParser()
     )
 
     def executar_mock(nome_do_curso: str , perguntas: list[str] , chain):
@@ -165,8 +179,6 @@ def main():
             # Formata a pergunta com o nome do curso
             query = pergunta_template.format(nome_do_curso=nome_do_curso)
 
-            logging.info("-" * 40 + f" Pergunta {i + 1}/{len(perguntas)}: {query}")
-
             inicio = time.perf_counter()
             try:
                 # Invoca a chain com a pergunta formatada
@@ -174,7 +186,7 @@ def main():
                 fim = time.perf_counter()
                 latencia = round(fim - inicio , 3)
 
-                logging.info(f"Pergunta: {query}")
+                logging.info(f" Pergunta {i + 1}/{len(perguntas)}: {query}")
                 logging.info(f"Resposta: {response}")
                 logging.info(f"Latência: {latencia}s")
                 logging.info("-------------------------------------------------")  # Separador no log
