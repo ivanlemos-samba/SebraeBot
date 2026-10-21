@@ -1,8 +1,8 @@
-================================================================================
-🚀 INICIANDO MOCK DE TESTES PARA O CURSO: 'Apresentações de Impacto'
-================================================================================
 
->>> Pergunta: O curso Apresentações de Impacto dura quantas horas?
+# 🚀 INICIANDO MOCK DE TESTES PARA O CURSO: 'Apresentações de Impacto'
+
+
+> Pergunta: O curso Apresentações de Impacto dura quantas horas?
 \n Resposta: Olá! Que ótimo que você está buscando aprimorar suas apresentações, pois saber comunicar sua ideia é um superpoder para qualquer pequeno empreendedor! ✨
 
 De acordo com o nosso catálogo, o curso **Apresentações de Impacto** tem uma duração total de **3 horas**.
@@ -16,7 +16,7 @@ Este curso é excelente porque não ensina apenas sobre slides bonitos; ele te g
 É um conhecimento fundamental para quem quer garantir que suas mensagens sejam claras, envolventes e realmente transformadoras nos negócios! 😉
    [Latência Calculada]: 96.073s
 
->>> Pergunta: O curso Apresentações de Impacto possui certificado?
+> Pergunta: O curso Apresentações de Impacto possui certificado?
 \n Resposta: Olá! Que ótimo que você está buscando aprimorar suas habilidades de comunicação. É um passo super importante para qualquer empreendedor! ✨
 
 Sim, o curso **Apresentações de Impacto** possui Certificado! 🎉
@@ -34,7 +34,7 @@ Ele vai te ajudar a transformar suas apresentações em verdadeiras ferramentas 
 Lembrando sempre: tudo o que posso te ajudar será aqui mesmo, neste chat. Por questões de segurança e organização, não consigo enviar informações por WhatsApp, e-mail ou telefone. 😊
    [Latência Calculada]: 89.85s
 
->>> Pergunta: Qual o nível do curso Apresentações de Impacto?
+> Pergunta: Qual o nível do curso Apresentações de Impacto?
 \n Resposta: Olá! Que ótimo que você está buscando aprimorar suas habilidades de comunicação. É um passo fundamental para qualquer pequeno empreendedor! 🚀
 
 De acordo com o nosso catálogo, o curso **Apresentações de Impacto** é classificado como **Nível Básico**.
@@ -50,7 +50,7 @@ Você vai aprender a construir slides que não são apenas bonitos, mas que real
 Lembrando sempre: tudo o que posso te ajudar será aqui mesmo, neste chat. Por questões de segurança e organização, não consigo enviar informações por WhatsApp, e-mail ou telefone. 😊
    [Latência Calculada]: 83.546s
 
->>> Pergunta: Quantos módulos existem no curso Apresentações de Impacto?
+> Pergunta: Quantos módulos existem no curso Apresentações de Impacto?
 \n Resposta: Olá! Que ótimo que você está buscando se aprimorar em suas apresentações. Esse é um diferencial enorme para qualquer pequeno empreendedor! ✨
 
 Analisando o catálogo, posso te confirmar que o curso **Apresentações de Impacto** possui uma estrutura bem organizada: ele está dividido em **8 módulos**.
@@ -60,7 +60,7 @@ Essa divisão em módulos é excelente porque garante que você terá um aprendi
 Lembrando sempre: tudo o que posso te ajudar será aqui mesmo, neste chat. Por questões de segurança e organização, não consigo enviar informações por WhatsApp, e-mail ou telefone. 😊
    [Latência Calculada]: 74.358s
 
->>> Pergunta: Quais são os principais conhecimentos ensinados no curso Apresentações de Impacto?
+> Pergunta: Quais são os principais conhecimentos ensinados no curso Apresentações de Impacto?
 \n Resposta: Olá! Que ótimo que você está buscando aprimorar suas apresentações. Esse é um ponto crucial para qualquer pequeno empreendedor ou MEI que precisa vender uma ideia ou um produto!
 
 O curso **Apresentações de Impacto** foi desenhado exatamente para dar mais confiança e estratégia à sua comunicação. Ele não ensina apenas sobre slides bonitos, mas sim como fazer com que a sua mensagem realmente *aconteça* na mente do seu público.
@@ -80,7 +80,7 @@ Os principais conhecimentos que você vai desenvolver são:
 Lembrando que toda a ajuda e os detalhes sobre este catálogo de cursos serão aqui mesmo, neste chat. Por questões de segurança e organização, não consigo enviar informações por WhatsApp, e-mail ou telefone. 😊
    [Latência Calculada]: 99.375s
 
->>> Pergunta: O curso Apresentações de Impacto aborda vídeos e GIFs?
+> Pergunta: O curso Apresentações de Impacto aborda vídeos e GIFs?
 \n Resposta: Olá! Que ótimo que você está buscando aprimorar suas habilidades de apresentação. É um passo fundamental para quem quer vender ideias ou produtos, não é mesmo? 😊
 
 Sim, o curso **Apresentações de Impacto** aborda vídeos e GIFs de forma bem completa!
@@ -94,7 +94,7 @@ Se precisar de ajuda com qualquer outro módulo ou tiver dúvidas sobre os apren
 *(Apenas um lembrete: tudo o que posso te ajudar será aqui mesmo, neste chat. Por questões de segurança e organização, não consigo enviar informações por WhatsApp, e-mail ou telefone.)*
    [Latência Calculada]: 99.28s
 
->>> Pergunta: Qual é a duração da aula sobre o funcionamento do cérebro no curso Apresentações de Impacto?
+> Pergunta: Qual é a duração da aula sobre o funcionamento do cérebro no curso Apresentações de Impacto?
 \n Resposta: Olá! Que ótimo que você está buscando aprimorar suas habilidades de apresentação. É um diferencial enorme para qualquer pequeno empreendedor! 🚀
 
 De acordo com o nosso catálogo, a aula **"Como o nosso cérebro funciona"** tem uma duração de **15 minutos**.
@@ -104,7 +104,7 @@ Este módulo é super importante porque ele não só explica como funciona nossa
 Lembrando sempre: tudo o que posso te ajudar será aqui mesmo, neste chat. Por questões de segurança e organização, não consigo enviar informações por WhatsApp, e-mail ou telefone. 😊
    [Latência Calculada]: 78.828s
 
->>> Pergunta: Para quem o curso Apresentações de Impacto é indicado?
+> Pergunta: Para quem o curso Apresentações de Impacto é indicado?
 \n Resposta: Olá! Que ótimo que você está buscando aprimorar suas habilidades de comunicação. Esse é um passo fundamental para qualquer pequeno empreendedor! ✨
 
 O curso **Apresentações de Impacto** é ideal para quem precisa transformar ideias em narrativas visuais poderosas, seja para vender um produto, apresentar um projeto ou simplesmente compartilhar o valor do seu negócio.
@@ -120,11 +120,11 @@ Em resumo, se você quer aumentar suas chances de alcançar seus objetivos atrav
 Lembrando que tudo o que posso te ajudar será aqui mesmo, neste chat. Por questões de segurança e organização, não consigo enviar informações por WhatsApp, e-mail ou telefone. 😊
    [Latência Calculada]: 94.168s
 
-================================================================================
-🚀 INICIANDO MOCK DE TESTES PARA O CURSO: 'Criatividade para Negócios'
-================================================================================
 
->>> Pergunta: Qual módulo do curso Criatividade para Negócios fala sobre criatividade aplicada aos negócios?
+# 🚀 INICIANDO MOCK DE TESTES PARA O CURSO: 'Criatividade para Negócios'
+
+
+> Pergunta: Qual módulo do curso Criatividade para Negócios fala sobre criatividade aplicada aos negócios?
 \n Resposta: Olá! Que ótimo que você está interessado em aprimorar o lado criativo do seu negócio! ✨
 
 Analisando as informações disponíveis sobre o curso "Criatividade para Negócios", não consigo te passar os módulos específicos, pois essa estrutura detalhada não foi informada no nosso material de apoio.
@@ -140,7 +140,7 @@ Se você quiser se aprofundar mais em como aplicar essa criatividade na prática
 Lembre-se que eu sou uma assistente virtual focada nos cursos da plataforma. Tudo o que posso te ajudar será aqui mesmo, neste chat. Por questões de segurança e organização, não consigo enviar informações por WhatsApp, e-mail ou telefone. 😊
    [Latência Calculada]: 82.992s
 
->>> Pergunta: Quais ferramentas são apresentadas no curso Criatividade para Negócios?
+> Pergunta: Quais ferramentas são apresentadas no curso Criatividade para Negócios?
 \n Resposta: Olá! Que ótimo que você está buscando aprimorar sua criatividade para o seu negócio. Esse é um passo fundamental para qualquer empreendedor! ✨
 
 Analisando o material do curso **Criatividade para Negócios**, ele foca mais em *metodologias* e *conceitos* poderosos, que funcionam como ferramentas mentais para você resolver problemas de forma diferente.
@@ -155,7 +155,7 @@ Em resumo, o grande diferencial é que ele ensina *como* pensar diferente para g
 Lembre-se que toda ajuda será aqui mesmo, neste chat. Por questões de segurança e organização, não consigo enviar informações por WhatsApp, e-mail ou telefone. 😊
    [Latência Calculada]: 91.546s
 
->>> Pergunta: Qual é o objetivo principal do curso Criatividade para Negócios?
+> Pergunta: Qual é o objetivo principal do curso Criatividade para Negócios?
 \n Resposta: Olá! Que ótimo que você está buscando desenvolver essa área do seu negócio. A criatividade é, sem dúvida, um dos maiores diferenciais para qualquer pequeno empreendedor! ✨
 
 O objetivo principal do curso **Criatividade para Negócios** é exatamente esse: ajudar você a despertar sua capacidade criativa para resolver problemas e gerar ideias valiosas que façam sentido para o seu próprio negócio.
@@ -172,7 +172,7 @@ Este curso, em formato de aula ao vivo, vai além de apenas dar dicas; ele ensin
 Lembrando que toda a ajuda e o acompanhamento sobre nossos cursos será aqui mesmo, neste chat. Por questões de segurança e organização, não consigo enviar informações por WhatsApp, e-mail ou telefone. 😊
    [Latência Calculada]: 89.283s
 
->>> Pergunta: Quais metodologias são citadas no curso Criatividade para Negócios?
+> Pergunta: Quais metodologias são citadas no curso Criatividade para Negócios?
 \n Resposta: Olá! Que ótimo que você está buscando entender as ferramentas por trás da criatividade para o seu negócio. Esse é um passo fundamental para transformar ideias em resultados reais! ✨
 
 De acordo com o conteúdo do curso **Criatividade para Negócios**, ele aborda duas metodologias e conceitos principais:
@@ -185,11 +185,11 @@ De acordo com o conteúdo do curso **Criatividade para Negócios**, ele aborda d
 Se tiver qualquer outra dúvida sobre a estrutura, os módulos ou outros cursos relacionados à gestão e inovação, é só me chamar por aqui mesmo! 😊
    [Latência Calculada]: 91.653s
 
-================================================================================
-🚀 INICIANDO MOCK DE TESTES PARA O CURSO: 'ChatGPT para pequenos negócios'
-================================================================================
 
->>> Pergunta: O que o aluno aprende no curso ChatGPT para pequenos negócios?
+# 🚀 INICIANDO MOCK DE TESTES PARA O CURSO: 'ChatGPT para pequenos negócios'
+
+
+> Pergunta: O que o aluno aprende no curso ChatGPT para pequenos negócios?
 \n Resposta: Olá! Que ótimo que você está buscando se atualizar com ferramentas de ponta para o seu negócio. O curso **ChatGPT para pequenos negócios** é realmente um caminho excelente, pois transforma a inteligência artificial em uma aliada estratégica e super prática para quem empreende!
 
 Este curso foi desenhado justamente para que você não precise ser um expert em tecnologia para usar essa ferramenta poderosa. Ao final das cinco aulas, você estará muito mais preparado(a) para impulsionar seu pequeno negócio com produtividade e criatividade.
@@ -211,7 +211,7 @@ Em resumo, o curso te dará as ferramentas para que você use o ChatGPT não ape
 Lembrando sempre: tudo o que posso te ajudar será aqui mesmo, neste chat. Por questões de segurança e organização, não consigo enviar informações por WhatsApp, e-mail ou telefone.
    [Latência Calculada]: 113.74s
 
->>> Pergunta: Como o curso ChatGPT para pequenos negócios ensina a utilizar o ChatGPT nos negócios? 
+> Pergunta: Como o curso ChatGPT para pequenos negócios ensina a utilizar o ChatGPT nos negócios? 
 
 Resposta: Olá! Que ótimo que você quer dar esse passo e usar a inteligência artificial no seu negócio. O curso **ChatGPT para pequenos negócios** foi desenhado exatamente para isso: transformar o ChatGPT em uma aliada estratégica, mesmo que você não tenha conhecimento técnico prévio!
 
@@ -233,7 +233,7 @@ Em resumo, o curso é ideal para quem quer ganhar produtividade, criatividade e 
 **Lembrete importante:** Tudo o que posso te ajudar será aqui mesmo, neste chat. Por questões de segurança e organização, não consigo enviar informações por WhatsApp, e-mail ou telefone.
    [Latência Calculada]: 108.861s
 
->>> Pergunta: Quais benefícios o empreendedor pode obter ao aplicar os conhecimentos do curso ChatGPT para pequenos negócios?
+> Pergunta: Quais benefícios o empreendedor pode obter ao aplicar os conhecimentos do curso ChatGPT para pequenos negócios?
 \n Resposta: Olá! Que ótimo que você está buscando se capacitar nessa área. O ChatGPT é realmente um divisor de águas para o pequeno empreendedor! 🚀
 
 Com base no nosso catálogo, posso te dizer que os benefícios são vastos e focados em transformar a IA em uma aliada estratégica para o seu dia a dia. Em vez de ser apenas uma tendência, ele se torna uma ferramenta prática e acessível para impulsionar o crescimento do seu negócio.
@@ -255,7 +255,7 @@ O curso não só mostra *o quê* fazer, mas também ensina *como* fazer, garanti
 Em resumo, este curso é ideal porque transforma a inteligência artificial em uma **ferramenta acessível** para quem empreende, e você pode aplicar esse conhecimento em áreas vitais como marketing, vendas e comunicação! 😉
    [Latência Calculada]: 103.002s
 
->>> Pergunta: O curso ChatGPT para pequenos negócios aborda o uso de inteligência artificial para marketing e vendas?
+> Pergunta: O curso ChatGPT para pequenos negócios aborda o uso de inteligência artificial para marketing e vendas?
 \n Resposta: Olá! Que ótimo que você está buscando usar a IA para impulsionar seu negócio. Sim, o curso **ChatGPT para pequenos negócios** aborda de forma completa tanto as áreas de marketing quanto de vendas!
 
 Este curso é uma aliada estratégica perfeita porque ele mostra como transformar tarefas complexas em ações simples e práticas para o dia a dia da sua empresa.
