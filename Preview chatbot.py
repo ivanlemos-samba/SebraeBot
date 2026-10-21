@@ -24,9 +24,9 @@ load_dotenv()
 
 # Definições
 EMBEDDING_MODEL = "embeddinggemma:300m"
-LLM_MODEL = "lfm2.5-thinking:1.2b"
+LLM_MODEL = "smallthinker:3b"
 FAISS_PATH = "indice_cursos_faiss"
-DOCUMENT_DIR = "./materiais_curso" # Ajuste este caminho para onde seus MDs estão
+DOCUMENT_DIR = "./Material de treinamento"
 
 
 def load_documents(caminho: str) -> list[Document]:
@@ -36,8 +36,7 @@ def load_documents(caminho: str) -> list[Document]:
 
     if not Path(caminho).exists():
         logging.error(f"Diretório não encontrado: {caminho}. Por favor, crie o diretório e adicione os arquivos .md.")
-        return docs # Retorna lista vazia se o caminho não existir
-
+        return docs
     for arquivo in Path(caminho).rglob("*.md"):
         try:
             with open(arquivo , "r" , encoding="utf-8") as f:
@@ -62,7 +61,7 @@ def main():
     # scraping_cook_data()
 
     # # 1 -  Carrega o JSON e transforma em documentos
-    # docs = load_documents("./Material de treinamento")
+    # docs = load_documents(DOCUMENT_DIR)
     # print(f"{len(docs)} documentos carregados.")
     #
     # if not docs:
@@ -108,7 +107,7 @@ def main():
     template = """
     
     [INSTRUÇÕES DE SISTEMA]    
-    Você é Stela, assistente virtual do SebraePlay. Sua missão exclusiva é guiar o usuário através do catálogo de cursos disponíveis na plataforma, utilizando apenas as informações fornecidas em {contexto_do_curso}.
+    Você é Stela, assistente virtual do SebraePlay. Sua missão exclusiva é guiar o usuário através do catálogo de cursos disponíveis na plataforma, utilizando apenas as informações fornecidas em CONTEXTO.
     
     [PERSONA]
     Tom: Mentora profissional, acessível e encorajadora. Use linguagem voltada para MEIs e pequenos empreendedores.
@@ -155,21 +154,38 @@ def main():
     )
 
     def executar_mock(nome_do_curso: str , perguntas: list[str] , chain):
+        """Executa o mock de testes e imprime os resultados."""
         resultados = []
 
-        for pergunta in perguntas:
-            query = pergunta.format(nome_do_curso=nome_do_curso)
+        print("\n" + "=" * 80)
+        print(f"🚀 INICIANDO MOCK DE TESTES PARA O CURSO: '{nome_do_curso}'")
+        print("=" * 80)
+
+        for i , pergunta_template in enumerate(perguntas):
+            # Formata a pergunta com o nome do curso
+            query = pergunta_template.format(nome_do_curso=nome_do_curso)
+
+            logging.info("-" * 40 + f" Pergunta {i + 1}/{len(perguntas)}: {query}")
 
             inicio = time.perf_counter()
-            response = chain.invoke(query)
-            fim = time.perf_counter()
+            try:
+                # Invoca a chain com a pergunta formatada
+                response = chain.invoke(query)
+                fim = time.perf_counter()
+                latencia = round(fim - inicio , 3)
 
-            latencia = round(fim - inicio , 3)
+                logging.info(f"Pergunta: {query}")
+                logging.info(f"Resposta: {response}")
+                logging.info(f"Latência: {latencia}s")
+                logging.info("-------------------------------------------------")  # Separador no log
 
-            logging.info(f"Pergunta: {query}")
-            logging.info(f"Latência: {latencia}s")
-            logging.info(f"Resposta: {response}")
-            logging.info("-" * 80)
+                # print("\n>>> Pergunta:" , query)
+                # print("<<< Resposta:" , response)
+                # print(f"   [Latência Calculada]: {latencia}s")
+            except Exception as e:
+                logging.error(f"Erro ao executar a pergunta '{query}': {e}")
+                response = "ERRO NA RESPOSTA."
+                latencia = 0
 
             resultados.append({
                 "pergunta": query ,
@@ -177,80 +193,78 @@ def main():
                 "latencia": latencia
             })
 
-            # print("Pergunta:" , query)
-            # print("Resposta:" , response)
-            # print("Latência:" , f"{latencia}s")
-            # print()
-
         return resultados
 
-    #Executar mock de testes
-    nome_do_curso = 'Apresentações de Impacto'
-    perguntas = [
-        "O curso {nome_do_curso} dura quantas horas?" ,
-        "O curso {nome_do_curso} possui certificado?" ,
-        "O curso {nome_do_curso} é gratuito?" ,
-        "Qual o nível do curso {nome_do_curso}?" ,
-        "Quem é o professor do curso {nome_do_curso}?" ,
-        "Quantos módulos existem no curso {nome_do_curso}?" ,
-        "Quantas aulas existem no curso {nome_do_curso}?" ,
-        "Quais são os principais conhecimentos ensinados no curso {nome_do_curso}?" ,
-        "O curso {nome_do_curso} ensina storytelling?" ,
-        "O curso {nome_do_curso} aborda o uso de imagens em apresentações?" ,
-        "O curso {nome_do_curso} ensina a escolher cores para slides?" ,
-        "O curso {nome_do_curso} fala sobre fontes e composição visual?" ,
-        "O curso {nome_do_curso} aborda vídeos e GIFs?" ,
-        "O curso {nome_do_curso} ensina técnicas para encantar o público?" ,
-        "O curso {nome_do_curso} ajuda a criar apresentações memoráveis?" ,
-        "Qual é a duração da aula sobre vídeos e GIFs no curso {nome_do_curso}?" ,
-        "Qual é a duração da aula sobre o funcionamento do cérebro no curso {nome_do_curso}?" ,
-        "O curso {nome_do_curso} ensina PowerPoint?" ,
-        "Quais benefícios o aluno recebe ao concluir o curso {nome_do_curso}?" ,
-        "Para quem o curso {nome_do_curso} é indicado?"
+    # --- DEFINIÇÃO DOS CENÁRIOS DE TESTE (REFACTORADO) ---
+    test_scenarios = [
+        {
+            'nome': 'Apresentações de Impacto' ,
+            'perguntas': [
+                "O curso {nome_do_curso} dura quantas horas?" ,
+                "O curso {nome_do_curso} possui certificado?" ,
+                "Qual o nível do curso {nome_do_curso}?" ,
+                "Quantos módulos existem no curso {nome_do_curso}?" ,
+                "Quais são os principais conhecimentos ensinados no curso {nome_do_curso}?" ,
+                "O curso {nome_do_curso} aborda vídeos e GIFs?" ,
+                "Qual é a duração da aula sobre o funcionamento do cérebro no curso {nome_do_curso}?" ,
+                "Para quem o curso {nome_do_curso} é indicado?"
+            ] ,
+            'respostas': [
+                "3h." ,
+                "Sim, possui certificado (com download)." ,
+                "Básico." ,
+                "8 módulos." ,
+                "Escolher cores, fontes, imagens e vídeos para slides; encantar o público; ser memorável; organizar a história; preparar os slides; técnicas de apresentação." ,
+                "Sim — módulo 'Vídeos e gifs' (aula de 20 min) ensina a incorporá-los e as melhores plataformas para encontrá-los." ,
+                "15 minutos ('Como o nosso cérebro funciona')." ,
+                "Para quem precisa apresentar ideias, vender produtos ou atrair investidores; nível básico, sem exigência técnica."
+            ]
+        } ,
+        {
+            'nome': 'Criatividade para Negócios' ,
+            'perguntas': [
+                "Qual módulo do curso {nome_do_curso} fala sobre criatividade aplicada aos negócios?" ,
+                "Quais ferramentas são apresentadas no curso {nome_do_curso}?" ,
+                "Qual é o objetivo principal do curso {nome_do_curso}?" ,
+                "Quais metodologias são citadas no curso {nome_do_curso}?"
+            ] ,
+            'respostas': [
+                "Não há módulos declarados: o curso é uma única aula ao vivo chamada 'Criatividade para Negócios - Curso Ao Vivo'." ,
+                "Técnicas de design thinking e os conceitos do livro 'Confiança Criativa'." ,
+                "Despertar a criatividade para resolver problemas, gerar ideias e criar soluções eficientes para o negócio, superando bloqueios criativos." ,
+                "Design thinking (e os conceitos do livro 'Confiança Criativa')."
+            ]
+        } ,
+        {
+            'nome': 'ChatGPT para pequenos negócios' ,
+            'perguntas': [
+                "O que o aluno aprende no curso {nome_do_curso}?" ,
+                "Como o curso {nome_do_curso} ensina a utilizar o ChatGPT nos negócios?" ,
+                "Quais benefícios o empreendedor pode obter ao aplicar os conhecimentos do curso {nome_do_curso}?" ,
+                "O curso {nome_do_curso} aborda o uso de inteligência artificial para marketing e vendas?"
+            ] ,
+            'respostas': [
+                "Criar e configurar a conta no ChatGPT; criar prompts claros e estratégicos; gerar ideias de conteúdo; estruturar funis de vendas automatizados; desenvolver discursos de vendas mais persuasivos; aplicar IA no dia a dia do negócio." ,
+                "De forma prática em 5 aulas curtas (35 min): criação da conta, geração de ideias de conteúdo, montagem de funil de vendas com inbound marketing, criação de discursos de vendas e escrita de prompts melhores." ,
+                "Mais produtividade, criatividade e eficiência, usando a IA como apoio estratégico no crescimento do negócio." ,
+                "Sim — o curso aplica o ChatGPT em marketing, vendas e comunicação (funil de vendas e discursos de venda)."
+            ]
+        }
     ]
-    resultados = executar_mock(
-        nome_do_curso=nome_do_curso ,
-        perguntas=perguntas ,
-        chain=chain
-    )
 
-    nome_do_curso = 'Criatividade para Negócios'
-    perguntas=[
-    "Qual módulo do curso {nome_do_curso} fala sobre criatividade aplicada aos negócios?",
-    "Qual aula do curso {nome_do_curso} aborda inovação?",
-    "Quantos minutos dura a aula sobre geração de ideias no curso {nome_do_curso}?",
-    "Quais ferramentas são apresentadas no curso {nome_do_curso}?",
-    "Qual é a primeira aula do curso {nome_do_curso}?",
-    "Qual é a última aula do curso {nome_do_curso}?",
-    "Quem apresenta o curso {nome_do_curso}?",
-    "Qual é o objetivo principal do curso {nome_do_curso}?",
-    "Quais metodologias são citadas no curso {nome_do_curso}?",
-    "Quais temas são tratados ao longo do curso {nome_do_curso}?"
-]
-    resultados = executar_mock(
-        nome_do_curso=nome_do_curso ,
-        perguntas=perguntas ,
-        chain=chain
-    )
+    # Executa todos os cenários em um loop único
+    all_results = []
+    for scenario in test_scenarios:
+        resultados = executar_mock(
+            nome_do_curso=scenario['nome'] ,
+            perguntas=scenario['perguntas'] ,
+            chain=chain
+        )
+        all_results.extend(resultados)
 
-    nome_do_curso = 'ChatGPT para pequenos negócios'
-    perguntas=perguntas_chatgpt_pequenos_negocios = [
-        "O que o aluno aprende no curso {nome_do_curso}?",
-        "Para quem o curso {nome_do_curso} é indicado?",
-        "Como o curso {nome_do_curso} ensina a utilizar o ChatGPT nos negócios?",
-        "Quais atividades de uma pequena empresa podem ser otimizadas com as técnicas ensinadas no curso {nome_do_curso}?",
-        "O curso {nome_do_curso} apresenta exemplos práticos de prompts?",
-        "Quais benefícios o empreendedor pode obter ao aplicar os conhecimentos do curso {nome_do_curso}?",
-        "O curso {nome_do_curso} ensina como criar conteúdos com inteligência artificial?",
-        "Como o ChatGPT pode ajudar no atendimento ao cliente segundo o curso {nome_do_curso}?",
-        "O curso {nome_do_curso} aborda o uso de inteligência artificial para marketing e vendas?",
-        "Quais tarefas do dia a dia podem ser automatizadas utilizando os conhecimentos do curso {nome_do_curso}?"
-    ]
-    resultados = executar_mock(
-        nome_do_curso=nome_do_curso ,
-        perguntas=perguntas ,
-        chain=chain
-    )
+    logging.info("\n=============================================")
+    logging.info("✅ MOCK DE TESTES CONCLUÍDO!")
+    logging.info("=============================================")
 
 
 
