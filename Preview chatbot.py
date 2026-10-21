@@ -15,33 +15,37 @@ from pathlib import Path
 import re
 
 
-# Configura o logger principal
-logger = logging.getLogger("meu_app")
-logger.setLevel(logging.INFO)
+# ---------- Configura o logger ROOT (o que todo logging.info() usa) ----------
+root_logger = logging.getLogger()
+root_logger.setLevel(logging.INFO)
 
-# ---------- Console (só o que você quer) ----------
+# Limpa handlers existentes para evitar duplicação
+root_logger.handlers.clear()
+
+# ---------- Console ----------
 console_handler = logging.StreamHandler()
 console_handler.setLevel(logging.INFO)
 console_formatter = logging.Formatter("%(asctime)s | %(levelname)s | %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
 console_handler.setFormatter(console_formatter)
-logger.addHandler(console_handler)
+root_logger.addHandler(console_handler)
 
-# ---------- Arquivo .txt (só o que você quer) ----------
+# ---------- Arquivo .txt ----------
 file_handler = logging.FileHandler("bot.log", encoding="utf-8")
 file_handler.setLevel(logging.INFO)
 file_handler.setFormatter(console_formatter)
-logger.addHandler(file_handler)
+root_logger.addHandler(file_handler)
 
-# ---------- Silenciar os logs HTTP ----------
-logging.getLogger("httpx").setLevel(logging.WARNING)   # ou logging.ERROR
+# ---------- Silenciar logs HTTP ----------
+logging.getLogger("httpx").setLevel(logging.WARNING)
 logging.getLogger("urllib3").setLevel(logging.WARNING)
 logging.getLogger("requests").setLevel(logging.WARNING)
+logging.getLogger("httpcore").setLevel(logging.WARNING)
 
 load_dotenv()
 
 # Definições
 EMBEDDING_MODEL = "embeddinggemma:300m"
-LLM_MODEL = "smallthinker:3b" # Recomendo somente modelos de 3b+ com thinking
+LLM_MODEL = "lms-lmstudio-community-gemma-4-e4b-it-gguf-gemma-4-e4b-it-q4_k_m:latest" # Recomendo somente modelos com thinking
 FAISS_PATH = "indice_cursos_faiss"
 DOCUMENT_DIR = "./Material de treinamento"
 
@@ -180,7 +184,7 @@ def main():
         }
         | prompt_template
         | llm
-        | FilterThoughtParser()
+        | StrOutputParser()
     )
 
     def executar_mock(nome_do_curso: str , perguntas: list[str] , chain):
@@ -207,9 +211,9 @@ def main():
                 logging.info(f"Latência: {latencia}s")
                 logging.info("-------------------------------------------------")  # Separador no log
 
-                # print("\n>>> Pergunta:" , query)
-                # print("<<< Resposta:" , response)
-                # print(f"   [Latência Calculada]: {latencia}s")
+                print("\n>>> Pergunta:" , query)
+                print("<<< Resposta:" , response)
+                print(f"   [Latência Calculada]: {latencia}s")
             except Exception as e:
                 logging.error(f"Erro ao executar a pergunta '{query}': {e}")
                 response = "ERRO NA RESPOSTA."
