@@ -15,11 +15,27 @@ from pathlib import Path
 import re
 
 
-# Configura o logging
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s | %(levelname)s | %(message)s",
-)
+# Configura o logger principal
+logger = logging.getLogger("meu_app")
+logger.setLevel(logging.INFO)
+
+# ---------- Console (só o que você quer) ----------
+console_handler = logging.StreamHandler()
+console_handler.setLevel(logging.INFO)
+console_formatter = logging.Formatter("%(asctime)s | %(levelname)s | %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
+console_handler.setFormatter(console_formatter)
+logger.addHandler(console_handler)
+
+# ---------- Arquivo .txt (só o que você quer) ----------
+file_handler = logging.FileHandler("bot.log", encoding="utf-8")
+file_handler.setLevel(logging.INFO)
+file_handler.setFormatter(console_formatter)
+logger.addHandler(file_handler)
+
+# ---------- Silenciar os logs HTTP ----------
+logging.getLogger("httpx").setLevel(logging.WARNING)   # ou logging.ERROR
+logging.getLogger("urllib3").setLevel(logging.WARNING)
+logging.getLogger("requests").setLevel(logging.WARNING)
 
 load_dotenv()
 
